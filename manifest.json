@@ -1,0 +1,75 @@
+{
+  "manifest_version": 3,
+  "name": "Google Lens pour Edge",
+  "short_name": "Google Lens",
+  "version": "1.3.0",
+  "description": "Ajoute le bouton Google Lens dans la barre d'outils Edge avec résultats dans le panneau latéral à droite (comme dans Chrome), sans clé API.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "scripting",
+    "storage",
+    "contextMenus",
+    "clipboardWrite",
+    "sidePanel",
+    "declarativeNetRequest"
+  ],
+  "host_permissions": [
+    "*://*.google.com/*",
+    "*://*.google.fr/*",
+    "*://*.google.be/*",
+    "*://*.google.ch/*",
+    "*://*.google.ca/*",
+    "*://*.google.co.uk/*",
+    "*://*.google.de/*",
+    "*://*.google.es/*",
+    "*://*.google.it/*",
+    "*://*.google.nl/*",
+    "*://*.google.pt/*",
+    "*://*.google.at/*",
+    "*://*.google.pl/*",
+    "*://*.google.ie/*",
+    "*://*.google.lu/*",
+    "*://*.google.com.au/*",
+    "*://*.google.co.jp/*",
+    "*://*.google.com.br/*"
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "lens_sidepanel_headers",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  },
+  "side_panel": {
+    "default_path": "sidepanel/sidepanel.html"
+  },
+  "action": {
+    "default_title": "Rechercher sur l'écran avec Google Lens (Alt+Shift+L)",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background/service-worker.js"
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Alt+Shift+L"
+      },
+      "description": "Capturer une zone de l'écran avec Google Lens"
+    }
+  }
+}

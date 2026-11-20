@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Google Lens</title>
+    <link rel="stylesheet" href="sidepanel.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <img src="../icons/icon32.png" alt="Google Lens" class="brand-icon" />
+        <span class="brand-name">Google Lens</span>
+      </div>
+
+      <div class="actions">
+        <button type="button" id="captureBtn" class="btn btn-primary" title="Sélectionner une nouvelle zone sur l'onglet actif">
+          Capturer
+        </button>
+        <button type="button" id="pasteBtn" class="btn btn-ghost" title="Coller une image du presse-papiers (Ctrl+V)">
+          Coller
+        </button>
+        <button type="button" id="openTabBtn" class="btn btn-ghost" title="Ouvrir cette recherche dans un grand onglet">
+          ↗ Onglet
+        </button>
+      </div>
+    </header>
+
+    <main class="stage" id="stage">
+      <iframe
+        id="lensFrame"
+        name="lensFrame"
+        title="Résultats Google Lens"
+        allow="clipboard-read; clipboard-write"
+      ></iframe>
+
+      <div class="empty-state" id="emptyState">
+        <div class="drop-card" id="dropzone">
+          <img src="../icons/icon48.png" alt="Google Lens" class="empty-logo" />
+          <h1>Rechercher avec Google Lens</h1>
+          <p>
+            Sélectionnez une zone de la page ou collez une capture (<kbd>Ctrl</kbd>+<kbd>V</kbd> / <kbd>Win</kbd>+<kbd>Maj</kbd>+<kbd>S</kbd>).
+          </p>
+          <div class="empty-actions">
+            <button type="button" id="emptyCaptureBtn" class="btn btn-primary">Capturer l'écran</button>
+            <button type="button" id="emptyPickBtn" class="btn btn-ghost">Choisir une image</button>
+          </div>
+          <input id="fileInput" type="file" accept="image/*" hidden />
+        </div>
+      </div>
+
+      <div class="loading-overlay" id="loadingOverlay">
+        <img id="previewThumb" class="preview-thumb" alt="Aperçu envoyé" />
+        <div class="spinner"></div>
+        <p id="loadingText">Recherche avec Google Lens…</p>
+        <button type="button" id="loadingTabBtn" class="btn btn-ghost btn-sm">
+          ↗ Ouvrir dans un onglet
+        </button>
+      </div>
+
+      <div class="fallback-banner" id="fallbackBanner">
+        <span id="fallbackText"></span>
+        <div class="fallback-actions">
+          <button type="button" id="fallbackTabBtn" class="btn btn-primary btn-sm">Ouvrir dans un onglet</button>
+          <button type="button" id="fallbackCloseBtn" class="btn btn-ghost btn-sm" title="Fermer">✕</button>
+        </div>
+      </div>
+
+      <div class="error-toast" id="errorToast"></div>
+
+      <form
+        id="lensForm"
+        target="lensFrame"
+        method="POST"
+        action="https://lens.google.com/v3/upload"
+        enctype="multipart/form-data"
+        style="display: none"
+      >
+        <input id="lensFileInput" type="file" name="encoded_image" />
+      </form>
+    </main>
+
+    <script src="sidepanel.js"></script>
+  </body>
+</html>

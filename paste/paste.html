@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Google Lens pour Edge — Importer ou coller</title>
+    <style>
+      :root { color-scheme: dark; }
+      * {
+        box-sizing: border-box;
+        font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        background: radial-gradient(circle at top, #1d2230 0%, #12141a 65%);
+        color: #e8eaed;
+      }
+      .card {
+        width: min(520px, 100%);
+        padding: 28px;
+        border-radius: 22px;
+        background: rgba(30, 33, 41, 0.96);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+      }
+      .header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 14px;
+      }
+      .header img {
+        width: 34px;
+        height: 34px;
+        border-radius: 9px;
+      }
+      h1 {
+        margin: 0;
+        font-size: 19px;
+        font-weight: 650;
+      }
+      .notice {
+        display: none;
+        margin: 0 0 16px;
+        padding: 10px 13px;
+        border-radius: 12px;
+        background: rgba(138, 180, 248, 0.12);
+        border: 1px solid rgba(138, 180, 248, 0.3);
+        color: #c2d7fa;
+        font-size: 13px;
+        line-height: 1.45;
+      }
+      .dropzone {
+        border: 2px dashed rgba(255, 255, 255, 0.22);
+        border-radius: 16px;
+        padding: 34px 20px;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.03);
+        transition: border-color 0.15s ease, background 0.15s ease;
+        cursor: pointer;
+      }
+      .dropzone.dragover {
+        border-color: #8ab4f8;
+        background: rgba(66, 133, 244, 0.12);
+      }
+      .dropzone strong {
+        display: block;
+        font-size: 15px;
+        margin-bottom: 8px;
+        color: #ffffff;
+      }
+      .dropzone p {
+        margin: 0 0 16px;
+        font-size: 13px;
+        color: #9aa0a6;
+        line-height: 1.5;
+      }
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+      }
+      button {
+        appearance: none;
+        border: 0;
+        border-radius: 999px;
+        padding: 10px 16px;
+        font-size: 13.5px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .btn-primary {
+        background: #8ab4f8;
+        color: #13161d;
+      }
+      .btn-primary:hover { background: #a8c7fa; }
+      .btn-secondary {
+        background: rgba(255, 255, 255, 0.1);
+        color: #e8eaed;
+      }
+      .btn-secondary:hover { background: rgba(255, 255, 255, 0.18); }
+      .status {
+        margin-top: 14px;
+        min-height: 20px;
+        text-align: center;
+        font-size: 13px;
+        color: #f6aea9;
+      }
+      kbd {
+        padding: 2px 6px;
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="card">
+      <div class="header">
+        <img src="../icons/icon48.png" alt="Google Lens" />
+        <h1>Rechercher une image avec Google Lens</h1>
+      </div>
+
+      <p class="notice" id="noticeBox"></p>
+
+      <div class="dropzone" id="dropzone" tabindex="0">
+        <strong>Appuyez sur <kbd>Ctrl</kbd> + <kbd>V</kbd> ou glissez une image ici</strong>
+        <p>Fonctionne avec une capture Windows (<kbd>Win</kbd>+<kbd>Maj</kbd>+<kbd>S</kbd>), une image copiée ou un fichier local.</p>
+        <div class="actions">
+          <button type="button" class="btn-primary" id="pasteBtn">Coller du presse-papiers</button>
+          <button type="button" class="btn-secondary" id="pickBtn">Choisir un fichier</button>
+        </div>
+        <input id="fileInput" type="file" accept="image/*" hidden />
+      </div>
+
+      <div class="status" id="statusBox"></div>
+    </main>
+
+    <script src="paste.js"></script>
+  </body>
+</html>

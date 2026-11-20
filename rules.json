@@ -1,0 +1,46 @@
+[
+  {
+    "id": 1,
+    "priority": 1,
+    "action": {
+      "type": "modifyHeaders",
+      "responseHeaders": [
+        { "header": "x-frame-options", "operation": "remove" },
+        { "header": "content-security-policy", "operation": "remove" },
+        { "header": "content-security-policy-report-only", "operation": "remove" },
+        { "header": "cross-origin-opener-policy", "operation": "remove" },
+        { "header": "cross-origin-embedder-policy", "operation": "remove" },
+        { "header": "cross-origin-resource-policy", "operation": "remove" }
+      ]
+    },
+    "condition": {
+      "requestDomains": [
+        "lens.google.com",
+        "google.com",
+        "google.fr",
+        "google.be",
+        "google.ch",
+        "google.ca",
+        "google.co.uk",
+        "google.de",
+        "google.es",
+        "google.it",
+        "google.nl",
+        "google.pt",
+        "google.at",
+        "google.pl",
+        "google.ie",
+        "google.lu",
+        "google.com.au",
+        "google.co.jp",
+        "google.com.br",
+        "consent.google.com",
+        "accounts.google.com",
+        "ogs.google.com",
+        "gstatic.com",
+        "googleusercontent.com"
+      ],
+      "resourceTypes": ["sub_frame"]
+    }
+  }
+]

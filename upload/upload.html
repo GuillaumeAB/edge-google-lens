@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Envoi vers Google Lens…</title>
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+      * {
+        box-sizing: border-box;
+        font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background: #14161b;
+        color: #e8eaed;
+      }
+      .card {
+        width: min(420px, 90vw);
+        padding: 28px 24px;
+        border-radius: 18px;
+        background: #1e2129;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+        text-align: center;
+      }
+      .spinner {
+        width: 42px;
+        height: 42px;
+        margin: 0 auto 16px;
+        border-radius: 50%;
+        border: 3.5px solid rgba(255, 255, 255, 0.14);
+        border-top-color: #4285F4;
+        border-right-color: #EA4335;
+        border-bottom-color: #FBBC05;
+        border-left-color: #34A853;
+        animation: spin 0.9s linear infinite;
+      }
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+      h1 {
+        margin: 0 0 8px;
+        font-size: 17px;
+        font-weight: 600;
+      }
+      p {
+        margin: 0;
+        font-size: 13.5px;
+        color: #9aa0a6;
+        line-height: 1.45;
+      }
+      .error {
+        display: none;
+        margin-top: 14px;
+        padding: 10px 12px;
+        border-radius: 10px;
+        background: rgba(234, 67, 53, 0.18);
+        border: 1px solid rgba(234, 67, 53, 0.45);
+        color: #f6aea9;
+        font-size: 13px;
+      }
+      .hidden-form {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="card">
+      <div class="spinner" id="spinner"></div>
+      <h1 id="title">Recherche avec Google Lens…</h1>
+      <p id="subtitle">Envoi de votre capture d'écran vers Google Lens.</p>
+      <div class="error" id="errorBox"></div>
+
+      <form
+        id="lensForm"
+        class="hidden-form"
+        method="POST"
+        action="https://lens.google.com/v3/upload"
+        enctype="multipart/form-data"
+      >
+        <input id="lensFileInput" type="file" name="encoded_image" />
+      </form>
+    </main>
+
+    <script src="upload.js"></script>
+  </body>
+</html>
